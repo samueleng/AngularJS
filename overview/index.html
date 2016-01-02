@@ -1,0 +1,56 @@
+<!DOCTYPE html> 
+<html data-ng-app="demoApp">  
+<head>  
+    <title>Using AngularJS Directives and Data Binding</title>
+</head>
+  <body>   
+    <div data-ng-controller="SimpleController">
+          Name:
+          <br /> 
+          <input type="test" data-ng-model="name"/> {{ name }} 
+          <br /> 
+              <li data-ng-repeat="cust in customers | filter:name | orderBy:'city'">{{ cust.name | uppercase }}  
+              - {{cust.city | lowercase}} </li>
+    </div>
+    <script src="scripts/angular.min.js"></script>  
+    <script src= "scipts/angular-route.js" type="text/javascript"></script>
+
+     <script>   
+          var demoApp = angular.module('demoApp',['ngRoute']);
+
+          demoApp.config(function ($routeProvider){ 
+              $routeProvider 
+                .when('/',
+                          { 
+                              controller: "SimpleController",
+                              templateUrl: 'Partials/view1.html'
+                          }) 
+                .when('/partial2',
+                          { 
+                              controller: "SimpleController",
+                              templateUrl: 'Partials/view2.html'
+                          }) 
+                .otherwise({redirectTo: '/' });
+          }); 
+
+          //var controllers = {}; 
+
+          demoApp.controller ('SimpleController',function ($scope){ 
+              $scope.customer = [{name: 'Sam Eng', city:'Singapore'}, 
+                                 {name: 'Germaine Ng', city:'Singapore'}, 
+                                 {name: 'Talya', city:'Malaysia'} 
+                                ]; 
+
+              $scope.addCustomer = function(){ 
+                 $scope.customers.push( 
+                                      {name: $scope.newCustomer.name,  
+                                       city: $scope.newCustomer.city 
+                                      });
+              };
+          });  
+
+          //controllers.controller2 = function (...)
+          //demoApp.controller(controllers);
+     </script>
+  </body> 
+</html>
