@@ -6,10 +6,49 @@
 	<script src="app.js"></script> 
 	<link rel="stylesheet" href="css/bootstrap.css">
 </head>  
-<body>
-<div ng-controller="MyCtrl">
-<button ng-click="toggle()">Toggle</button>  
-	<p ng-show="visible">Hello World!</p>
-    </div>
+<body> 
+<!-- 
+ Using the ng-controller directive, we bind the div element including its children to the context of the MyCtrl controller.  
+-->
+<div ng-controller="MyCtrl"> 
+<!-- 
+The ng-click directive will call the toggle() function of our controller on button click.  
+-->
+<button ng-click="toggle()">Toggle</button>   
+<!-- 
+ Note that the ng-show directive is bound to the visible scope variable and will toggle the paragraph’s visibility accordingly.  
+-->
+	<p ng-show="visible">Hello World!</p>   
+<!-- 
+Converting Expression Output with Filters  
+In our case we want to uppercase the name value
+-->
+Enter your name: <input type="text" ng-model="name"></input>
+	<p> Hello {{ name | uppercase }} ! </p>
+</div> 
+ 
+ 
+<!-- 
+Creating Custom HTML Elements with Directives 
+-->  
+<label for="checkbox"> 
+	<input id="checkbox" type="checkbox" ng-model="visible">Toggle me
+</label> 
+ 
+	<div show="visible">
+		<p>"Hello Sam!"</p>
+	</div>  
+  
+
+
+
+
+
+
+
+
+
+
+
   </body>
 </html>
