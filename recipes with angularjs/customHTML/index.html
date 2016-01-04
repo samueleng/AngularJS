@@ -2,7 +2,14 @@
   <head>
     <script src="scripts/angular.min.js"></script>    
     <script src="app.js"></script> 
-    <script src= "scripts/angular-route.js" type="text/javascript"></script> 
+    <script src= "scripts/angular-route.js" type="text/javascript"></script>  
+
+    <link rel="shortcut icon" type="image/png" href="jasmine/jasmine-standalone-2.4.1/lib/jasmine-2.4.1/jasmine_favicon.png">
+    <link rel="stylesheet" type="text/css" href="jasmine/jasmine-standalone-2.4.1/lib/jasmine-2.4.1/jasmine.css">
+
+    <script type="text/javascript" src="jasmine/jasmine-standalone-2.4.1/lib/jasmine-2.4.1/jasmine.js"></script>
+    <script type="text/javascript" src="jasmine/jasmine-standalone-2.4.1/lib/jasmine-2.4.1/jasmine-html.js"></script>
+    <script type="text/javascript" src="jasmine/jasmine-standalone-2.4.1/lib/jasmine-2.4.1/boot.js"></script>
     <link rel="stylesheet" href="css/bootstrap.css">  
 
   </head>
@@ -13,10 +20,17 @@
     </div>  
 
     <div ng-controller="MyCtrl"> 
-      <p>{{value}}</p> 
+      <p>{{value}}</p>   
+
+      <button ng-click="increment()">"Increment"</button>
+      count: {{count}} 
+      <button ng-click="decrement()">"Decrement"</button> 
+
+      <input type="text" placeholder="Did you increment to 5?"> 
+      <p>{{successTo5}}</p> 
+
     </div> 
  
-
 
   </body>
 </html>

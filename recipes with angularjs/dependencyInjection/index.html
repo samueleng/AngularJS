@@ -1,0 +1,26 @@
+<html>   
+
+<head>  
+	<script src="scripts/angular.min.js"></script>   
+	<script src= "scripts/angular-route.js" type="text/javascript"></script>   
+	<script src="app.js"></script>   
+</head> 
+  
+<!-- 
+Notice that we pass the price property as an argument to the directive in the template. As explained above, this argument is available to us on the attrs parameter as a property named for our directive (discount). To keep things clear, we assign the value for this scope property (which we obtain with scope.$eval) to a local variable named price. 
+-->
+<body data-ng-app = "MyApp">  
+	<table ng-init="price = 100"> 
+		<tr> 
+			<td>Full price:</td> 
+			<td ng-bind="price | currency"></td>
+		</tr>
+		<tr>
+			<td>Sale price:</td> 
+			<td discount="price"></td> 
+		</tr> 
+	</table>
+
+</body>
+
+</html>

@@ -20,5 +20,33 @@
 		}; 
 	}; 
 
-})();  
+})();    
+ 
+var app = angular.module("MyApp", []);
+ 
+/* 
+The factory method creates a singleton UserService, that returns two functions for retrieving all users  
+and the first user only. The controllers get the UserService injected by adding it to the controller function as params. 
+*/
+app.factory("UserService", function() {
+  var users = ["sam", "germaine", "Nina"];
+
+  return {
+    all: function() {
+      return users;
+    },
+    first: function() {
+      return users[0];
+    }
+  };
+});
+
+app.controller("FirstCtrl", function($scope, UserService) {
+  $scope.users = UserService.all();
+});
+
+app.controller("AnotherCtrl", function($scope, UserService) {
+  $scope.firstUser = UserService.first();
+});
+
  

@@ -1,0 +1,37 @@
+<html>  
+<head>  
+	<script src="scripts/angular.min.js"></script>   
+	<script src="http://code.jquery.com/jquery.min.js"></script>   
+	<script src= "scripts/angular-route.js" type="text/javascript"></script>   
+	<script src="app.js"></script>  
+	<link rel="stylesheet" href="css/bootstrap.css">
+</head>  
+
+<body ng-app = "MyApp"> 
+		<label><input type="checkbox" ng-model="checked"/>Toggle Button</label>  
+		<!-- 
+		ng-disabled directive is bound to the checked model using an attribute value as is the checkbox using the ng-model directive.  
+		-->
+		<button ng-disabled="checked">Press me!</button>   
+
+		<!--  
+		change the CSS of an HTML element on a mouse click and encapsulate this behavior in a reusable component. 
+		we use the new directive as an HTML element my-widget, which can be found in the Javascript code as myWidget
+		-->
+
+		<my-widget> 
+			<p>Hello World</p> 
+		</my-widget> 
+
+		<!-- 
+		 render an HTML snippet as a reusable component. 
+		--> 
+		<div my-directive>
+		    <button>some button</button>
+		    <a href="#">and a link</a>
+		</div>
+</div>.
+
+</body> 
+
+</html> 

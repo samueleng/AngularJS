@@ -1,0 +1,21 @@
+<html>  
+<head>  
+<script src="scripts/angular.min.js"></script>   
+<script src="app.js"></script>   
+</head>  
+
+<body ng-app="MyApp">  
+
+	<div ng-controller="FirstCtrl"> 
+		<ul ng-repeat="user in users">
+			<li> {{user}}</li> 
+		</ul>  
+
+		<div class="nested" ng-controller="AnotherCtrl"> 
+			First user: {{firstUser}} 
+		</div>  
+	</div>
+ 
+</body> 
+
+</html>

@@ -22,8 +22,28 @@ app.directive("show", function() {
  
 //Add a controller to your application, and refer to the controller with the ng-controller directive:
 var ctrl = angular.module("app", []) 
-		   
-app.controller("MyCtrl", function($scope){ 
- 	$scope.value = "I succeeded!"; 
+		     
+//Changing a Model Value with a Controller Function
+app.controller("MyCtrl", function($scope){  
+
+ 	$scope.value = "I succeeded!";  
+ 	$scope.count = 1; 
+ 	$scope.increment= function(){ 
+ 		$scope.count += 1;
+ 	}; 
+ 	$scope.decrement=function(){ 
+ 		$scope.count -= 1;
+ 	};  
+
+ 	//Responding to Scope Changes  
+ 	$scope.successTo5 ="No"  
+ 	$scope.$watch("count",function(newValue,oldValue){ 
+ 		if($scope.count == "5"){ 
+ 			console.log("change detected: " + newValue)
+ 			$scope.successTo5 = "Yes 5 is reached!"
+ 		}
+ 	}) 
+
+
 })
-    
+     
