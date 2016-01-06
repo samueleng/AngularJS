@@ -1,0 +1,82 @@
+<html> 
+ <head>   
+ 	<title>Flapper news!</title> 
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.10/angular.min.js"></script>
+	<script src="http://code.jquery.com/jquery.min.js"></script>   
+	<script src= "scripts/angular-route.js" type="text/javascript"></script>   
+	<script src="app.js"></script>   
+	<!--  
+	Up until now, however, our interface has been lacking in the looks department. We can spruce it up a bit using some basic Bootstrap styling.  
+	-->
+	<link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet"> 
+	<style> .glyphicon-thumbs-up { cursor:pointer } </style> 
+	<!-- 
+	deal with multiple views and controllers, which we will accomplish using the wonderful ui-router library. 
+	-->
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.10/angular-ui-router.js"></script>
+ </head> 
+  
+ <!-- 
+ Whenever ui-router detects a route change, it will place the new state's template inside the tag and initialize the controller we specified in our state configuration.Notice how we have removed the ng-controller="MainCtrl" line from the opening <body> tag. 
+  -->
+ <body ng-app="flappernews"> 
+ 	<div class="row"> 
+ 		<div class="col-md-6 col-md-offset-3"> 
+
+ 		<ui-view></ui-view>
+ 		
+	 	<!-- 
+	 	To order posts by number of upvotes: tap into an angular filter : orderBy 
+
+	 	Now that we can add some new posts, why don't we allow a user to upvote existing ones? To get started, lets revisit our ng-repeat directive.  
+	 	Next to each post, we need to place a click-able element that will increment the corresponding post's upvote counter: 
+	 	-->
+	 	<div ng-repeat="post in posts | orderBy: '-upvotes' ">   
+ 					<span class="glyphicon glyphicon-thumbs-up" ng-click="incrementUpvotes(post)"></span> 
+ 					{{post.upvotes}} 
+ 					<!--  
+ 					Finally we need to modify the ng-repeat section to make the title a link to the content, but only if a link was specified.   
+ 					We'll do this by using a new directive called ng-hide, which hides elements when an Angular expression evaluates to true. 
+ 					It is worth noting that ng-show is merely the inverse of ng-hide. 
+ 					--> 
+ 					<span style="font-size:20px; margin-left:10px;">
+ 						<a ng-show= "post.link" href = "{{post.link}}">{{ post.title }}</a>
+
+ 						<span ng-hide="post.link">{{post.title}}</span>  
+ 					</span>
+		</div> 
+
+
+ 	<!--  
+ 	Great, we can now click a button and have a new post show up! Let's extend this by allowing the user to actually specify what they want the title to be. First, we need to build out the form in HTML and sprinkle it with some Angular Magic. 
+ 	Finally, we're using the ng-model directive to bind the contents of the text box to $scope. This will allow our controller to access the contents of the text box using $scope.title. 
+ 	--> 
+ 	<form ng-submit="addCustomPost()" style="margin-top:30px;">  
+ 		<h3>Add a new post</h3> 
+ 		<div class="form-group">
+ 		<input type="text" class="form-control" placeHolder ="Title" ng-model="title"></input>   
+ 		</div>
+ 		 	<!--  
+		 	Ultimately, Flapper News is about sharing links to content, so lets enable users to submit links along with their titles. We'll start by adding a second text box to our form that a user can use to submit a link. We'll also add some placeholder text to make it clear which form is which:  
+		 	-->  
+		 <div class="form-group">
+		 <input type="text" class="form-control" placeHolder="Link" ng-model="link"></input>
+		 </div>
+ 		<button type="submit" class="btn btn-primary">Post custom title</button>
+ 	</form>  
+
+
+ 	<!--  
+ 	define the home.html template Using this syntax we can create templates inside our HTML and reference them in JavaScript. 
+ 	we need to tell ui-router where to place the template of the active state. 
+ 	--> 
+ 	<script type="text/ng-template" id="/home.html"> 
+ 		<div class="page-header"> 
+ 			<h1>Flapper News</h1> 
+ 		</div>
+
+ 		<!--rest of template-->
+ 	</script>
+
+ </body>
+</html>
